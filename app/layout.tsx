@@ -3,41 +3,30 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
+  title: 'Kush Casino — официальный сайт для игры онлайн с телефона',
+  description: 'Kush Casino: официальный сайт для мобильной игры онлайн. Узнайте, как найти актуальный вход, выбрать слоты и настольные игры, проверить зеркало и играть ответственно с телефона.',
   metadataBase: new URL('https://kush5casino.vercel.app/'),
-  title: 'Kush Casino — официальный сайт и рабочее зеркало',
-  description: 'Kush Casino: понятный гид по официальному сайту, рабочему зеркалу, играм онлайн и безопасному входу с телефона для совершеннолетних игроков.',
-  keywords: ['Kush Casino', 'Kush Casino официальный сайт', 'Kush Casino зеркало', 'куш казино играть онлайн'],
-  alternates: { canonical: 'https://kush5casino.vercel.app/' },
+  alternates: { canonical: '/' },
   robots: { index: true, follow: true },
-  icons: { icon: '/kush-favicon.png', apple: '/kush-favicon.png' },
-  openGraph: {
-    title: 'Kush Casino — официальный сайт и рабочее зеркало',
-    description: 'Понятный гид по входу, играм онлайн и рабочему зеркалу Kush Casino.',
-    url: 'https://kush5casino.vercel.app/',
-    siteName: 'Kush Casino',
-    type: 'website',
-  },
+  icons: { icon: '/icon.svg', apple: '/apple-icon.png' },
 }
 
-export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#0b1714',
-  width: 'device-width',
-  initialScale: 1,
-  userScalable: false,
-}
+export const viewport: Viewport = { themeColor: '#101311', colorScheme: 'dark', width: 'device-width', initialScale: 1, userScalable: true }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
-        {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
-      </body>
+    <html lang="ru" className="bg-background">
+      <head>
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:title" content="Kush Casino — игра начинается с правильного выбора" />
+        <meta property="og:description" content="Понятный гид по Kush Casino для мобильной игры онлайн." />
+        <meta property="og:url" content="https://kush5casino.vercel.app/" />
+        <link rel="canonical" href="https://kush5casino.vercel.app/" />
+      </head>
+      <body className="antialiased">{children}{process.env.NODE_ENV === 'production' && <Analytics />}</body>
     </html>
   )
 }
